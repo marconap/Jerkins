@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Stage 2') {
             steps {
-                echo 'stage2!' 
+                sh 'curl -X GET 'http://172.18.2.25/jk-manager?cmd=update&from=list&w=balancer&sw=node1&vwa=1' 
             }
         }
         stage('Stage 3') {
