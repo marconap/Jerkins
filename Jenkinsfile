@@ -28,7 +28,7 @@ pipeline {
                                     }    
                                     }
         }
-  ###Dopo gli stage deploy applicazione###
+  
     post { 
         always { 
             sh "${CMD_deploy_T1}"
