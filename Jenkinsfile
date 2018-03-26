@@ -17,9 +17,11 @@ pipeline {
         }
         stage('wait_1_min') {
             steps {
+                script{
                 def time = params.time
-            echo "Waiting ${SLEEP_TIME_IN_SECONDS} seconds for deployment to complete prior to deploy"
+            echo "Waiting time seconds for deployment to complete prior to deploy"
             sleep time.toInteger() // seconds
+                }
                     }    
                  }
         }
