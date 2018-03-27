@@ -1,7 +1,10 @@
 pipeline {
     agent any 
      environment{
-        CMD_balancer = "curl -u admin:adminadmin -X GET 'http://172.18.2.25:80/jk-manager?cmd=update&from=list&w=balancer&sw=node1&vwa=1'"
+         CMD_balancer_disable = "curl -u ${userpass} -X GET 'http://${IP_httpd}/jk-manager?cmd=update&from=list&w=balancer&sw=node1&vwa=1'"
+         CMD_balancer_enable  = "curl -u ${userpass} -X GET 'http://${IP_httpd}/jk-manager?cmd=update&from=list&w=balancer&sw=node1&vwa=0'"
+         CMD_upload_app = "cd ${repository_path} && cp -p *.war ${webapps_path} "       
+        
                 }
    stages {
                 stage('Stage 1') {
@@ -12,7 +15,7 @@ pipeline {
                 
                 stage('Stage 2') {
                                 steps {
-                                        sh "${CMD_balancer}"
+                                        sh "${CMD_balancer_disable}"
                                       }
                                  }
        
@@ -30,7 +33,10 @@ pipeline {
   
     post { 
         always { 
-            sh "${CMD_deploy_T1}"
+            
+            sh "${CMD_upload_app}"
+            sh "${CMD_balancer_enable}"
+            
         }
     }
     }
