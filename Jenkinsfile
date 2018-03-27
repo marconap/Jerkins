@@ -10,6 +10,11 @@ pipeline {
                 stage('Stage 1') {
                                 steps {
                                         echo 'Prova SCM!' 
+                                         script {
+                                    input message: 'Richiesto input utente',
+              parameters: [choice(name: 'Proseguire con il deploy', choices: 'no\si', description: 'Choose "yes" if you want to deploy this build')]
+        }
+                                    
                                       }
                                  }
                 
