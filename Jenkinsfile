@@ -11,7 +11,7 @@ pipeline {
                                 steps {
                                         echo 'Prova SCM!' 
                                          script {
-                                             input 'Deploy to Production?'
+                                             input 'Continuare con il deploy?'
                                     
                                                 }
                                     
