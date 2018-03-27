@@ -3,7 +3,7 @@ pipeline {
      environment{
          CMD_balancer_disable = "curl -u ${userpass} -X GET 'http://${IP_httpd}/jk-manager?cmd=update&from=list&w=balancer&sw=node1&vwa=1'"
          CMD_balancer_enable  = "curl -u ${userpass} -X GET 'http://${IP_httpd}/jk-manager?cmd=update&from=list&w=balancer&sw=node1&vwa=0'"
-         CMD_upload_app = "ssh ${IP_Tomcat1} && cd ${repository_path} && git pull origin master && cp -p *.war ${webapps_path}"       
+         CMD_upload_app = "ssh - T ${IP_Tomcat1} && cd ${repository_path} && git pull origin master && cp -p *.war ${webapps_path}"       
         
                 }
    stages {
